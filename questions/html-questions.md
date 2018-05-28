@@ -13,7 +13,7 @@ Use `lang` in tags. Also use metadata and `Content-Language` HTTP header.
 * https://www.w3.org/International/getting-started/language
 
 	
-###What kind of things must you be wary of when design or developing for multilingual sites?
+### What kind of things must you be wary of when design or developing for multilingual sites?
 * `lang` attribute in your HTML.
 * Directing users to their native language - Allow a user to change his country/language easily without hassle.
 * Language reading direction - `dir` attr indicating language direction, such as `rtl`
@@ -24,7 +24,7 @@ Use `lang` in tags. Also use metadata and `Content-Language` HTTP header.
 ###### References
 * https://www.quora.com/What-kind-of-things-one-should-be-wary-of-when-designing-or-developing-for-multilingual-sites
 
-###What are `data-` attributes good for?
+### What are `data-` attributes good for?
 Before JavaScript frameworks became popular, front end developers used data- attributes to store extra data within the DOM itself, without other hacks such as non-standard attributes, extra properties on the DOM. It is intended to store custom data private to the page or application, for which there are no more appropriate attributes or elements.
 
 These days, using data- attributes is not encouraged. One reason is that users can modify the data attribute easily by using inspect element in the browser. The data model is better stored within JavaScript itself and stay updated with the DOM via data binding possibly through a library or a framework.
@@ -33,7 +33,7 @@ These days, using data- attributes is not encouraged. One reason is that users c
 * http://html5doctor.com/html5-custom-data-attributes/
 
 
-###Consider HTML5 as an open web platform. What are the building blocks of HTML5?
+### Consider HTML5 as an open web platform. What are the building blocks of HTML5?
 * Semantics - Allowing you to describe more precisely what your content is.
 * Connectivity - Allowing you to communicate with the server in new and innovative ways.
 * Offline and storage - Allowing webpages to store data on the client-side locally and operate offline more efficiently.
@@ -47,7 +47,7 @@ These days, using data- attributes is not encouraged. One reason is that users c
 
 * https://developer.mozilla.org/en-US/docs/Web/Guide/HTML/HTML5
 	
-###Describe the difference between a `cookie`, `sessionStorage` and `localStorage`.
+### Describe the difference between a `cookie`, `sessionStorage` and `localStorage`.
 * All the above-mentioned technologies are key-value storage mechanisms on the client side. They are only able to store values as strings.
 
 ###### References
@@ -55,7 +55,7 @@ These days, using data- attributes is not encouraged. One reason is that users c
 * https://developer.mozilla.org/en-US/docs/Web/HTTP/Cookies
  
  
-###Describe the difference between `<script>`, `<script async>` and `<script defer>`.
+### Describe the difference between `<script>`, `<script async>` and `<script defer>`.
  * `<script>` stops the rendering process, to download and run the script
  * `<script async>` does not stop the rendering process while asynchronously downloading a script. When finished downloading, it stops rendering and the script runs.
  * `<script defer>` does not stop the rendering process while asynchronously downloading a script. When finished rendering, the script runs.
@@ -72,7 +72,7 @@ These days, using data- attributes is not encouraged. One reason is that users c
 * https://developer.yahoo.com/performance/rules.html#css_top
 
   
-###What is progressive rendering?
+### What is progressive rendering?
  * Progressive rendering is the name given to techniques used to render content for display as quickly as possible. With HTML progressive rendering is chunking the HTML into separate bits and loading each block as it's finished. 
  * e.g. `Lazy Loading` and `Prioritizing visible content`. 
 
@@ -80,7 +80,7 @@ These days, using data- attributes is not encouraged. One reason is that users c
 
 * https://stackoverflow.com/questions/33651166/what-is-progressive-rendering
 
-###Why you would use a `srcset` attribute in an image tag? Explain the process the browser uses when evaluating the content of this attribute.
+### Why you would use a `srcset` attribute in an image tag? Explain the process the browser uses when evaluating the content of this attribute.
 You would use the `srcset` attribute when you want to serve different images to users depending on their device display width - serve higher quality images to devices with retina display enhances the user experience while serving lower resolution images to low-end devices increase performance and decrease data wastage (because serving a larger image will not have any visible difference). 
 
 For example: `<img srcset="small.jpg 500w, medium.jpg 1000w, large.jpg 2000w" src="..." alt="">` tells the browser to display the small, medium or large `.jpg` graphic depending on the client's resolution. The first value is the image name and the second is the width of the image in pixels. For a device width of 320px, the following calculations are made:
@@ -99,5 +99,5 @@ If the resolution is retina (2x), the browser will use the closest resolution ab
 ###### References
 *  https://developer.mozilla.org/en-US/docs/Learn/HTML/Multimedia_and_embedding/Responsive_images
 
-###Have you used different HTML templating languages before?
+### Have you used different HTML templating languages before?
 * I have used Pug/Jade before. 
