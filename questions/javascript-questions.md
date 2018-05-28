@@ -1,8 +1,39 @@
 # JS Questions:
 
-* Explain event delegation
-* Explain how `this` works in JavaScript
-* Explain how prototypal inheritance works
+### Explain event delegation
+Event delegation is a technique involving adding event listeners to a parent element instead of adding them to the descendant elements. The listener will fire whenever the event is triggered on the descendant elements due to event bubbling up the DOM. The benefits of this technique are:
+
+* Memory footprint goes down because only one single handler is needed on the parent element, rather than having to attach event handlers to each descendent
+* There is no need to unbind the handler from elements that are removed and to bind the event to new elements.
+
+Event bubbling provides the foundation for event delegation in browsers. Now you can bind an event handler to a single parent element, and that handler will get executed whenever the even occurs on any of its child nodes (and any of their children in turn).
+
+###### References
+* https://stackoverflow.com/questions/1687296/what-is-dom-event-delegation
+
+
+### Explain how `this` works in JavaScript
+The call-site determines where `this` will point during the execution of a function.
+
+1. **Default Binding** - Think of this this rule as the default catch-all rule when none of the other rules apply. If in strict mode ('use strict'), this will be undefined instead of the global object.
+2. **Implicit Binding** - Another rule to consider is: does the call-site have a context object, also referred to as an owning or containing object, though these alternate terms could be slightly misleading.
+3. **Explicit Binding** - functions have call(..) and apply(..) methods which both take, as their first parameter, an object to use for the this, and then invoke the function with that this specified. Since you are directly stating what you want the this to be, we call it explicit binding.
+4. **`new` Binding** - If the new keyword is used when calling the function, this inside the function is a brand new object.
+When a function is invoked with new in front of it, otherwise known as a constructor call, the following things are done automatically:
+
+	1. a brand new object is created (aka, constructed) out of thin air
+	2. the newly constructed object is [[Prototype]]-linked
+	3. the newly constructed object is set as the this binding for that function call
+	4. unless the function returns its own alternate object, the new-invoked function call will automatically return the newly constructed object.
+
+5. If the function is an ES2015 arrow function, it ignores all the rules above and receives the this value of its surrounding scope at the time it is created.
+ 
+###### References
+* https://github.com/getify/You-Dont-Know-JS/blob/master/this%20%26%20object%20prototypes/ch2.md
+* https://codeburst.io/the-simple-rules-to-this-in-javascript-35d97f31bde3
+
+
+### Explain how prototypal inheritance works
 * What do you think of AMD vs CommonJS?
 * Explain why the following doesn't work as an IIFE: `function foo(){ }();`.
   * What needs to be changed to properly make it an IIFE?
