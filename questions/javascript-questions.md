@@ -1,12 +1,12 @@
 # JS Questions:
 
 ### Explain event delegation
-Event delegation is a technique involving adding event listeners to a parent element instead of adding them to the descendant elements. The listener will fire whenever the event is triggered on the descendant elements due to event bubbling up the DOM. The benefits of this technique are:
+`Event delegation` is a technique involving adding event listeners to a **parent element** instead of adding them to the descendant elements. The listener will fire whenever the event is triggered on the descendant elements due to `event bubbling` up the DOM. The benefits of this technique are:
 
 * Memory footprint goes down because only one single handler is needed on the parent element, rather than having to attach event handlers to each descendent
 * There is no need to unbind the handler from elements that are removed and to bind the event to new elements.
 
-Event bubbling provides the foundation for event delegation in browsers. Now you can bind an event handler to a single parent element, and that handler will get executed whenever the even occurs on any of its child nodes (and any of their children in turn).
+`Event bubbling` provides the foundation for event delegation in browsers. Now you can bind an event handler to a single parent element, and that handler will get executed whenever the even occurs on any of its child nodes (and any of their children in turn).
 
 ###### References
 * https://stackoverflow.com/questions/1687296/what-is-dom-event-delegation
@@ -15,11 +15,11 @@ Event bubbling provides the foundation for event delegation in browsers. Now you
 ### Explain how `this` works in JavaScript
 The call-site determines where `this` will point during the execution of a function.
 
-1. **Default Binding** - Think of this this rule as the default catch-all rule when none of the other rules apply. If in strict mode ('use strict'), this will be undefined instead of the global object.
-2. **Implicit Binding** - Another rule to consider is: does the call-site have a context object, also referred to as an owning or containing object, though these alternate terms could be slightly misleading.
-3. **Explicit Binding** - functions have call(..) and apply(..) methods which both take, as their first parameter, an object to use for the this, and then invoke the function with that this specified. Since you are directly stating what you want the this to be, we call it explicit binding.
+1. **Default Binding** - Think of this this rule as the default catch-all rule when none of the other rules apply. If in strict mode ('use strict'), `this` will be undefined instead of the `global` object. In a browser, it will be the `window` object.
+2. **Implicit Binding** - If the call-site have a context object, also referred to as an owning or containing object - `obj.method()`, `this` is the object that the function is a property of.
+3. **Explicit Binding** - functions have `call(..)` and `apply(..)` methods which both take, as their first parameter, an object to use for the `this`, and then invoke the function with that this specified. 
 4. **`new` Binding** - If the new keyword is used when calling the function, this inside the function is a brand new object.
-When a function is invoked with new in front of it, otherwise known as a constructor call, the following things are done automatically:
+When a function is invoked with `new` or otherwise known as a constructor call, the following things are done automatically:
 
 	1. a brand new object is created (aka, constructed) out of thin air
 	2. the newly constructed object is [[Prototype]]-linked
@@ -34,25 +34,61 @@ When a function is invoked with new in front of it, otherwise known as a constru
 
 
 ### Explain how prototypal inheritance works
-* What do you think of AMD vs CommonJS?
-* Explain why the following doesn't work as an IIFE: `function foo(){ }();`.
-  * What needs to be changed to properly make it an IIFE?
-* What's the difference between a variable that is: `null`, `undefined` or undeclared?
-  * How would you go about checking for any of these states?
-* What is a closure, and how/why would you use one?
-* Can you describe the main difference between a `forEach` loop and a `.map()` loop and why you would pick one versus the other?
-* What's a typical use case for anonymous functions?
-* How do you organize your code? (module pattern, classical inheritance?)
-* What's the difference between host objects and native objects?
-* Difference between: `function Person(){}`, `var person = Person()`, and `var person = new Person()`?
-* What's the difference between `.call` and `.apply`?
-* Explain `Function.prototype.bind`.
-* What's the difference between feature detection, feature inference, and using the UA string?
-* Explain Ajax in as much detail as possible.
-* What are the advantages and disadvantages of using Ajax?
-* Explain how JSONP works (and how it's not really Ajax).
-* Have you ever used JavaScript templating?
-  * If so, what libraries have you used?
+When attempting a property access on an object that doesn't have that property, the object's internal `[[Prototype]]` linkage defines where the `[[Get]]` operation  should look next. This cascading linkage from object to object essentially defines a `"prototype chain"` of objects to traverse for property resolution. This simulates inheritance, but is correctly identified as **delegation** rather than inheritance.
+
+###### References
+* https://davidwalsh.name/javascript-objects
+* https://github.com/getify/You-Dont-Know-JS/blob/master/this%20%26%20object%20prototypes/ch5.md
+
+
+### What do you think of AMD vs CommonJS?
+* STUDY: https://stackoverflow.com/questions/16521471/relation-between-commonjs-amd-and-requirejs
+
+### Explain why the following doesn't work as an IIFE: `function foo(){ }();`. What needs to be changed to properly make it an IIFE?
+IIFE stands for immediately invoked function expression. An IIFE is an anonymous function that is created than immediately invoked. It's not called anywhere else and is run right after creation.  IIFEs are used to guard against **unintended effects of hoisting**. IIFEs can also be used to enforce **private variables and methods**.
+
+Foo isn’t being called in the original question:
+
+```
+function foo(){
+}();
+```
+
+This is a function **definition**, it defines foo. But it’s not a function **expression** - that is, it’s not understood by the JS parser to actually call a function.
+
+For the parser to understand that it is dealing with a function **expression**, we would have to wrap things in an `()`: `(function foo(){}())` and `(function foo(){})()`.
+
+###### References:
+* http://lucybain.com/blog/2014/immediately-invoked-function-expression/
+
+### What's the difference between a variable that is: `null`, `undefined` or undeclared? How would you go about checking for any of these states?
+
+### What is a closure, and how/why would you use one?
+
+### Can you describe the main difference between a `forEach` loop and a `.map()` loop and why you would pick one versus the other?
+
+### What's a typical use case for anonymous functions?
+
+### How do you organize your code? (module pattern, classical inheritance?)
+
+### What's the difference between host objects and native objects?
+
+### Difference between: `function Person(){}`, `var person = Person()`, and `var person = new Person()`?
+
+### What's the difference between `.call` and `.apply`?
+
+### Explain `Function.prototype.bind`.
+
+### What's the difference between feature detection, feature inference, and using the UA string?
+
+### Explain Ajax in as much detail as possible.
+
+### What are the advantages and disadvantages of using Ajax?
+
+###  Explain how JSONP works (and how it's not really Ajax).
+
+### Have you ever used JavaScript templating? If so, what libraries have you used?
+
 * Explain "hoisting".
 * Describe event bubbling.
 * What's the difference between an "attribute" and a "property"?

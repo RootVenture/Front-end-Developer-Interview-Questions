@@ -1,8 +1,32 @@
 # CSS Questions:
 
-* What is CSS selector specificity and how does it work?
-* What's the difference between "resetting" and "normalizing" CSS? Which would you choose, and why?
-* Describe Floats and how they work.
+### What is CSS selector specificity and how does it work?
+Specificity **determines, which CSS rule is applied** by the browsers.
+There are four distinct categories which define the specificity level of a given selector, and are four comma-separated values, `a, b, c, d`.
+
+1. `a` are **Inline styles** (Presence of style in document). An inline style lives within your XHTML document. It is attached directly to the element to be styled. E.g. `<h1 style=“color: #fff;”>`
+1. **IDs** (# of ID selectors) ID is an identifier for your page elements, such as `#div`.
+1. **Classes, attributes and pseudo-classes** (# of class selectors). This group includes `.classes`, `[attributes]` and pseudo-classes such as `:hover`, `:focus` etc.
+1. **Elements and pseudo-elements** (# of Element (type) selectors). Including for instance `:before` and `:after`.
+
+The resulting specificity is not a score, but a matrix of values that can be compared column by column. When comparing selectors to determine which has the highest specificity, look from left to right, and compare the highest value in each column. So a value in column `b` will override values in columns `c` and `d`, no matter what they might be. As such, specificity of `0,1,0,0` would be greater than one of `0,0,10,10`.
+
+When selectors have an equal specificity value, the latest rule is the one that counts.
+
+###### References
+* https://www.smashingmagazine.com/2007/07/css-specificity-things-you-should-know/
+
+### What's the difference between "resetting" and "normalizing" CSS? Which would you choose, and why?
+1. **Reset** - CSS resets aim to *remove* all built-in browser styling. Standard elements like H1-6, p, strong, em, et cetera end up looking exactly alike, having no decoration at all. You're then supposed to add *all decoration* yourself.
+2. **Normalize** - Normalize CSS aims to make built-in browser styling *consistent* across browsers. Elements like H1-6 will appear bold, larger et cetera in a consistent way across browsers. You're then supposed to add only the *difference* in decoration your design needs.
+
+If your design a) follows common conventions for typography et cetera, and b) Normalize.css works for your target audience, then using Normalize.CSS instead of a CSS reset will make your own CSS smaller and faster to write.
+
+###### References
+* https://stackoverflow.com/questions/6887336/what-is-the-difference-between-normalize-css-and-reset-css
+
+### Describe Floats and how they work.
+
 * Describe z-index and how stacking context is formed.
 * Describe BFC(Block Formatting Context) and how it works.
 * What are the various clearing techniques and which is appropriate for what context?
