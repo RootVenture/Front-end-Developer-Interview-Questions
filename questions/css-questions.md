@@ -76,17 +76,66 @@ In a block formatting context, each box’s left outer edge touches the left edg
 * https://developer.mozilla.org/en-US/docs/Web/Guide/CSS/Block_formatting_context
 
 ### What are the various clearing techniques and which is appropriate for what context?
-* How would you approach fixing browser-specific styling issues?
-* How do you serve your pages for feature-constrained browsers?
-  * What techniques/processes do you use?
-* What are the different ways to visually hide content (and make it available only for screen readers)?
-* Have you ever used a grid system, and if so, what do you prefer?
-* Have you used or implemented media queries or mobile specific layouts/CSS?
+* **The Empty Div Method** - `<div style="clear: both;"></div>` 
+* **The Overflow Method** - `overflow: auto` or `overflow: hidden`. The parent will expand to contain the floats, effectively clearing it for succeeding elements. 
+* **Easy Clearing Method** - uses a clever `.clearfix` CSS pseudo selector (:after) to clear floats (see above).
+
+In large projects, write a utility .clearfix class and use them in places needed. `overflow: hidden` might clip children if the children is taller than the parent and is not very ideal.
+
+###### References:
+* https://css-tricks.com/all-about-floats/
+
+### Explain CSS sprites, and how you would implement them on a page or site.
+CSS Sprites are a means of combining multiple images into a single image file for use on a website, to help with performance. It is a commonly-used technique for icons (Gmail uses it). How to implement it:
+
+1. Use a sprite generator that packs multiple images into one and generate the appropriate CSS for it.
+2. Each image would have a corresponding CSS class with `background-image`, `background-position` and `background-size` properties defined.
+3. To use that image, add the corresponding class to your element.
+
+Advantages:
+
+* Reduce the number of HTTP requests for multiple images (only a single request).
+* Advance downloading of assets that won't be downloaded until needed, such as images that only appear upon `:hover` pseudo-states. Blinking wouldn't be seen.
+
+
+###### References:
+* https://css-tricks.com/css-sprites/
+
+### How would you approach fixing browser-specific styling issues?
+
+* After identifying the issue and the offending browser, use a separate style sheet that only loads when that specific browser is being used. This technique requires server-side rendering though.
+* Use libraries like Bootstrap that already handles these styling issues for you.
+* Use `autoprefixer` to automatically add vendor prefixes to your code.
+* use Reset CSS or Normalize.css
+
+### How do you serve your pages for feature-constrained browsers? What techniques/processes do you use?
+
+* **Graceful degradation** - The practice of building an application for modern browsers while ensuring it remains functional in older browsers.
+* **Progressive enhancement** - The practice of building an application for a base level of user experience, but adding functional enhancements when a browser supports it.
+* Use caniuse.com to check for feature support.
+* Autoprefixer for automatic vendor prefix insertion.
+* Feature detection using Modernizr.
+
+### What are the different ways to visually hide content (and make it available only for screen readers)?
+
+* `visibility: hidden`. However, the element is still in the flow of the page, and still takes up space.
+* `width: 0; height: 0`. Make the element not take up any space on the screen at all, resulting in not showing it.
+* `position: absolute; left: -99999px`. Position it outside of the screen.
+	* Has the least caveats, works for most elements and it's an easy technique.
+* `text-indent: -9999px`. This only works on text within the block elements.
+
+### Have you ever used a grid system, and if so, what do you prefer?
+
+I have used CSS-Grid, but have experience with `float`-based grids e.g. in Bootstrap.
+
+### Have you used or implemented media queries or mobile specific layouts/CSS?
+
+Yes. An example would be transforming a stacked pill `navigation` into a fixed-bottom tab navigation beyond a certain breakpoint.
+
 * Are you familiar with styling SVG?
 * Can you give an example of an `@media` property other than `screen`?
 * What are some of the "gotchas" for writing efficient CSS?
-* What are the advantages/disadvantages of using CSS preprocessors?
-  * Describe what you like and dislike about the CSS preprocessors you have used.
+* What are the advantages/disadvantages of using CSS preprocessors? Describe what you like and dislike about the CSS preprocessors you have used.
 * How would you implement a web design comp that uses non-standard fonts?
 * Explain how a browser determines what elements match a CSS selector.
 * Describe pseudo-elements and discuss what they are used for.
